@@ -1,61 +1,103 @@
 <!DOCTYPE html>
 <html lang="fr">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link
-         rel="stylesheet"
-         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-         crossorigin="anonymous"
-         >
-      <link rel="stylesheet"  type="text/css" href="style.css"/>
-      <title>Orinoco</title>
-   </head>
-<!---Body--->
-   <body>
-      <!---Navbar-->
-      <div class="bg-dark">
-         <div class="container">
-         <div class="row">
-               <nav class="col navbar navbar-expand-md navbar-dark">
-                  <img src="JWDP5/images/logo.png"  width="30" height="30" alt="Logo Orinoco"> 
-                  <a class="navbar-brand" href="index.html">Orinoco</a>
-                              
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
-                  <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div id="navbarContent" class="collapse navbar-collapse">
-                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                           <a class="nav-link" href="index.html">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="#">Nos collections</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="shopping_cart.html">Panier</a>
-                        </li>
-                     </ul> 
-                  </div>
-               </nav>
-         </div>
-      </div>
-      </div>
-    <!--- Footer-->
-   <footer>    
-      <div id="footer" class="container-fluid position-bottom">
-         <div class="row">
-            <div class="col">
-               <ul class="list-inline text-center ">
-                  <li class="list-inline-item"><a href="#">À propos</a></li>
-                  <li class="list-inline-item">&middot;</li>
-                  <li class="list-inline-item"><a href="#">Vie privée</a></li>
-                  <li class="list-inline-item">&middot;</li>
-                  <li class="list-inline-item"><a href="#">Conditions d'utilisation</a></li>
-               </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Orinoco - Confirmation de commande</title>
+  </head>
+  <!---Body--->
+  <body>
+    <!---Navbar-->
+    <div class="bg-dark">
+      <div class="container">
+        <div class="row">
+          <nav class="col navbar navbar-expand-md navbar-dark">
+            <img
+              src="../images/logo.png"
+              width="30"
+              height="30"
+              alt="Logo Orinoco"
+            />
+            <a class="navbar-brand" href="index.html">Orinoco</a>
+
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarContent"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarContent" class="collapse navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">Accueil</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Nos collections</a>
+                </li>
+              </ul>
             </div>
-         </div>
+            <form class="form-inline">
+              <a class="btn btn-light btn-sm" href="shopping_cart.html">
+                <i class="fa fa-shopping-cart"> Panier</i>
+                <span class="badge badge-light"></span>
+              </a>
+            </form>
+          </nav>
+        </div>
       </div>
-   </footer>       
+    </div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+        <li class="breadcrumb-item"><a href="paiement.html">Paiement</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+          Confirmation de commande
+        </li>
+      </ol>
+    </nav>
+
+    <!-- Main -->
+    <div id="confirm-message">
+      <article>
+        <p>
+          Merci Nom Prénom, votre commande n°000000 d'un montant de 00, 00€ a
+          été passée avec succès !<br />
+          Vous recevrez un mail de confirmation dans quelques instants.
+        </p>
+      </article>
+    </div>
+
+    <!--- Footer-->
+    <footer>
+      <div id="footer" class="container-fluid position-bottom">
+        <div class="row">
+          <div class="col">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item"><a href="#">À propos</a></li>
+              <li class="list-inline-item">&middot;</li>
+              <li class="list-inline-item"><a href="#">Vie privée</a></li>
+              <li class="list-inline-item">&middot;</li>
+              <li class="list-inline-item">
+                <a href="#">Conditions d'utilisation</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

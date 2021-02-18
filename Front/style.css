@@ -1,12 +1,6 @@
-html,
-body,
-h1,
-form,
-fieldset,
-legend,
-ol,
-li,
-footer {
+/* GENERAL  */
+
+* {
   margin: 0;
   padding: 0;
 }
@@ -14,14 +8,31 @@ html,
 body {
   height: 100%;
 }
+html,
 body {
-  background: #ffffff;
+  background: #e6ccb2;
   color: #111111;
   font-family: Georgia, "Times New Roman", Times, serif;
-  padding: 20px;
+}
+body {
+  text-align: center;
+}
+#main {
+  max-width: 1280px;
+  min-height: 100%;
+  margin: 0 auto;
+  position: relative;
 }
 ul {
   list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+
+/* NAV */
+nav ol.breadcrumb {
+  background-color: #e6ccb2;
 }
 nav a {
   color: black;
@@ -30,53 +41,166 @@ nav a {
 nav img {
   margin-right: 15px;
 }
+
+/* JUMBOTRON */
+
 #jumbotron {
-  background-color: rgb(223, 199, 228);
+  background-color: #7f5539;
+  margin-top: 50px;
 }
+h2 {
+  margin-top: 20px;
+  font-size: 25px;
+}
+
+/* LISTE */
+
 .container {
-  min-height: 100%;
   position: relative;
 }
-.title {
-  color: rgb(166, 106, 191);
-  margin-top: 2%;
+h3.title {
+  color: #7f5539;
+  text-decoration: none;
 }
 .section {
-  margin: 10px 0 10px 0;
+  margin: 10px 0 25px 0;
+}
+.img-fluid {
+  width: 100%;
+  height: 100%;
+}
+img.img-fluid {
+  border-radius: 3px;
 }
 #teddy1 {
   padding-top: 10%;
 }
 #teddy5 {
-  padding-bottom: 30%;
+  padding-bottom: 150px;
+}
+.btn-block + .btn-block {
+  background-color: #9c6644;
 }
 
-/* -- Products --*/
+/* PRODUCTS */
 #product-title {
-  margin-top: 5%;
+  margin: 5% 0 5% 0;
 }
 .product {
   margin-top: 10%;
 }
+#product-details {
+  margin-bottom: 20px;
+  padding-bottom: 150px;
+}
+#product-image {
+  margin-bottom: 10px;
+}
+#add-btn {
+  background-color: #9c6644;
+}
+/* Media Queries */
+@media screen and (max-width: 700px) {
+  #select-color {
+    width: 100%;
+  }
+}
 
-/* -- shopping cart --*/
+/* SHOPPING CART */
 #shopping_cart_title {
   margin-top: 5%;
   margin-bottom: 5%;
 }
-/* -- Paiement --*/
+#shop-tab {
+  padding-bottom: 150px;
+  margin-bottom: 150px;
+}
+#tab {
+  margin-bottom: 50px;
+}
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+table tr {
+  background-color: #e6ccb2;
+  border: 1px solid #9c6644;
+  padding: 0.35em;
+}
+
+table th,
+table td {
+  padding: 0.625em;
+  text-align: center;
+}
+
+table th {
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+/* Media Queries */
+@media screen and (max-width: 700px) {
+  table {
+    border: 0;
+  }
+  table thead {
+    display: none;
+  }
+  table tr {
+    border-bottom: 3px solid #9c6644;
+    display: block;
+    margin-bottom: 1em;
+  }
+  table td::before {
+    font-size: 0.8em;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+  }
+  table td {
+    border-bottom: 1px solid #9c6644;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    text-align: right;
+  }
+  table td.empty {
+    display: none;
+  }
+  .form-control {
+    width: 50%;
+  }
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  table td:last-child {
+    border-bottom: 0;
+  }
+  a.btn.btn-block.btn-light {
+    margin-bottom: 10px;
+  }
+}
+
+/* PAIEMENT */
 #form {
   display: flex;
   justify-content: center;
 }
 form#paiement {
-  background: #9cbc2c;
+  background: #9c6644;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   padding: 20px;
   width: 400px;
-  margin-bottom: 50px;
+  margin-bottom: 150px;
 }
 form#paiement fieldset {
   margin-bottom: 10px;
@@ -85,11 +209,11 @@ form#paiement fieldset:last-of-type {
   margin-bottom: 0;
 }
 form#paiement legend {
-  color: #384313;
+  color: white;
   font-size: 16px;
   font-weight: bold;
   padding-bottom: 10px;
-  text-shadow: 0 1px 1px #c0d576;
+  text-shadow: 0 1px 1px black;
 }
 form#paiement {
   counter-reset: fieldsets;
@@ -105,9 +229,8 @@ form#paiement fieldset fieldset legend {
   padding-bottom: 0;
 }
 form#paiement ol li {
-  background: #b9cf6a;
   background: rgba(255, 255, 255, 0.3);
-  border-color: #e3ebc3;
+  border-color: #e6ccb2;
   border-color: rgba(255, 255, 255, 0.6);
   border-style: solid;
   border-width: 2px;
@@ -138,34 +261,42 @@ form#paiement fieldset fieldset label {
 form#paiement fieldset fieldset label:hover {
   cursor: pointer;
 }
-form#paiement button {
-  background: #384313;
+a#validation-button.btn.btn-block {
+  background: #e6ccb2;
   border: none;
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
   -khtml-border-radius: 20px;
   border-radius: 20px;
-  color: #ffffff;
+  color: #000000;
   display: block;
   font: 18px Georgia, "Times New Roman", Times, serif;
   letter-spacing: 1px;
   margin: auto;
   padding: 7px 25px;
-  text-shadow: 0 1px 1px #000000;
+  text-shadow: 0 1px 1px #ffffff;
   text-transform: uppercase;
 }
 form#paiement button:hover {
   background: #1e2506;
   cursor: pointer;
 }
-
-/* -- Footer -- */
-#footer {
-  background-color: rgb(223, 199, 228);
-  position: absolute;
+#validation-btn {
+  background-color: #9c6644;
 }
-#footer ul {
-  margin-bottom: 0;
+/* CONFIRMATION DE COMMANDE */
+#confirm-message {
+  margin-top: 100px;
+}
+
+/* FOOTER */
+#footer {
+  background-color: #7f5539;
+  position: absolute;
+  bottom: 0;
+}
+li.list-inline-item {
+  padding-top: 10px;
 }
 #footer ul a {
   color: black;

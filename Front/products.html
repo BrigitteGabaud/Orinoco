@@ -9,105 +9,123 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <script
+      src="https://kit.fontawesome.com/fc076ccdef.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
-
+    <link
+      href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <title>Orinoco</title>
   </head>
 
   <!---Body-->
   <body>
-    <!---Navbar-->
-    <div class="bg-dark">
-      <div class="container">
-        <div class="row">
-          <nav class="col navbar navbar-expand-md navbar-dark">
-            <img
-              src="../images/logo.png"
-              width="30"
-              height="30"
-              alt="Logo Orinoco"
-            />
-            <a class="navbar-brand" href="index.html">Orinoco</a>
+    <div id="main">
+      <!---Navbar-->
+      <div class="bg-dark">
+        <div class="container">
+          <div class="row">
+            <nav class="col navbar navbar-expand-md navbar-dark">
+              <img
+                src="../images/logo.png"
+                width="30"
+                height="30"
+                alt="Logo Orinoco"
+              />
+              <a class="navbar-brand" href="index.html">Orinoco</a>
 
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarContent"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div id="navbarContent" class="collapse navbar-collapse">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Accueil</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Nos collections</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="shopping_cart.html">Panier</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div
-        id="block-lmf-breadcrumbs"
-        class="block block-system block-system-breadcrumb-block"
-      ></div>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Produit</li>
-        </ol>
-      </nav>
-    </div>
-
-    <!---Main-->
-    <div class="container">
-      <h1 id="product-title">Ourson</h1>
-      <article class="row product">
-        <img class="col-md-6" src="../images/teddy_1.jpg" alt="Votre produit" />
-        <div class="col-md-6">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-            dolor assumenda quidem aut molestiae!
-          </p>
-          <select class="form-control">
-            <option selected>Couleur de votre ourson</option>
-            <option value="1">Marron</option>
-            <option value="2">Blanc</option>
-            <option value="3">Gris</option>
-          </select>
-          <h2>00,00 €</h2>
-          <a href="shopping_cart.html" class="btn btn-success btn-block"
-            >Ajouter au panier</a
-          >
-        </div>
-      </article>
-    </div>
-
-    <!--- Footer-->
-    <footer>
-      <div id="footer" class="container-fluid position-bottom">
-        <div class="row">
-          <div class="col">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item"><a href="#">À propos</a></li>
-              <li class="list-inline-item">&middot;</li>
-              <li class="list-inline-item"><a href="#">Vie privée</a></li>
-              <li class="list-inline-item">&middot;</li>
-              <li class="list-inline-item">
-                <a href="#">Conditions d'utilisation</a>
-              </li>
-            </ul>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarContent"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div id="navbarContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Accueil</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Nos collections</a>
+                  </li>
+                </ul>
+              </div>
+              <form class="form-inline">
+                <a class="btn btn-light btn-sm" href="shopping_cart.html">
+                  <i class="fa fa-shopping-cart"> Panier</i>
+                  <span class="badge badge-light"></span>
+                </a>
+              </form>
+            </nav>
           </div>
         </div>
       </div>
-    </footer>
+      <div class="container">
+        <div
+          id="block-lmf-breadcrumbs"
+          class="block block-system block-system-breadcrumb-block"
+        ></div>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Produit</li>
+          </ol>
+        </nav>
+      </div>
+
+      <!---Produit-->
+      <div class="container">
+        <h1 id="product-title">Ourson</h1>
+        <article class="row" id="product-details">
+          <img
+            id="product-image"
+            class="col-md-6"
+            src="../images/teddy_1.jpg"
+            alt="Votre produit"
+          />
+          <div class="col-md-6">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              dolor assumenda quidem aut molestiae!
+            </p>
+            <select id="select-color" class="form-control">
+              <option selected>Couleur de votre ourson</option>
+              <option value="1">Marron</option>
+              <option value="2">Blanc</option>
+              <option value="3">Gris</option>
+            </select>
+            <h2>00,00 €</h2>
+            <a href="shopping_cart.html" id="add-btn" class="btn btn-block"
+              >Ajouter au panier
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <!--- Footer-->
+      <footer>
+        <div id="footer" class="container-fluid position-bottom">
+          <div class="row">
+            <div class="col">
+              <ul class="list-inline text-center">
+                <li class="list-inline-item"><a href="#">À propos</a></li>
+                <li class="list-inline-item">&middot;</li>
+                <li class="list-inline-item"><a href="#">Vie privée</a></li>
+                <li class="list-inline-item">&middot;</li>
+                <li class="list-inline-item">
+                  <a href="#">Conditions d'utilisation</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
