@@ -51,12 +51,12 @@
                   </li>
                 </ul>
               </div>
-              <form class="form-inline">
+              <!-- <form class="form-inline">
                 <a class="btn btn-light btn-sm" href="shopping_cart.html">
                   <i class="fa fa-shopping-cart"> Panier</i>
                   <span class="badge badge-light"></span>
                 </a>
-              </form>
+              </form> -->
             </nav>
           </div>
         </div>
@@ -80,45 +80,47 @@
                   <th scope="col"></th>
                   <th scope="col">Produit</th>
                   <th scope="col">Couleur</th>
-                  <th scope="col">Dispo</th>
                   <th scope="col">Quantité</th>
+                  <th scope="col">Disponibilité</th>
                   <th scope="col">Prix</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td data-label="Produit">
+                  <td>
                     <img
+                      id="teddy-1"
                       src="../images/teddy_1.jpg"
                       width="120"
                       height="100"
                       alt="Votre produit"
                     />
                   </td>
-                  <td>Lucien l'ourson tout doux</td>
-                  <td data-label="Couleur">
-                    <select class="form-control">
-                      <option selected>-</option>
-                      <option value="1">Marron</option>
-                      <option value="2">Blanc</option>
-                      <option value="3">Gris</option>
-                    </select>
+                  <td class="responsive-thumbnails">
+                    Lucien l'ourson tout doux
                   </td>
-                  <td data-label="Disponibilité">En stock</td>
-                  <td data-label="Quantité">
-                    <input
-                      class="form-control"
-                      type="number"
-                      placeholder="Qté"
+                  <td class="responsive-thumbnails">Marron</td>
+                  <td class="responsive-thumbnails">1</td>
+                  <td class="responsive-thumbnails">En stock</td>
+                  <td class="responsive-thumbnails">26,90€</td>
+                </tr>
+                <tr>
+                  <td>
+                    <img
+                      id="teddy-2"
+                      src="../images/teddy_2.jpg"
+                      width="120"
+                      height="100"
+                      alt="Votre produit"
                     />
                   </td>
-                  <td data-label="Prix">26,90€</td>
-                  <!-- <td>
-                                 <button class="btn btn-danger">
-                                    <i class="fa fa-trash">
-                                    </i>
-                                 </button>
-                              </td> -->
+                  <td class="responsive-thumbnails">
+                    Marguerite l'oursonne joyeuse
+                  </td>
+                  <td class="responsive-thumbnails">Gris</td>
+                  <td class="responsive-thumbnails">1</td>
+                  <td class="responsive-thumbnails">En stock</td>
+                  <td class="responsive-thumbnails">23,50€</td>
                 </tr>
                 <tr>
                   <!-- <td data-label="empty"></td> -->
@@ -126,8 +128,8 @@
                   <td class="empty"></td>
                   <td class="empty"></td>
                   <td class="empty"></td>
-                  <td class="sm-center">Sous-total</td>
-                  <td class="sm-center">26,90€</td>
+                  <td class="sm-center"><strong>Sous-total:</strong></td>
+                  <td class="sm-center">50,40€</td>
                 </tr>
                 <tr>
                   <!-- <td></td> -->
@@ -135,7 +137,7 @@
                   <td class="empty"></td>
                   <td class="empty"></td>
                   <td class="empty"></td>
-                  <td class="sm-center">Frais de port</td>
+                  <td class="sm-center"><strong>Frais de port:</strong></td>
                   <td class="sm-center">Offerts</td>
                 </tr>
                 <tr>
@@ -144,8 +146,8 @@
                   <td class="empty"></td>
                   <td class="empty"></td>
                   <td class="empty"></td>
-                  <td class="sm-center"><strong>Total</strong></td>
-                  <td class="sm-center"><strong>26,90€</strong></td>
+                  <td><strong>Total:</strong></td>
+                  <td class="sm-center"><strong>50,40€</strong></td>
                 </tr>
               </tbody>
             </table>
@@ -153,7 +155,7 @@
           <div class="col">
             <div class="row">
               <div class="col-md-6">
-                <a href="index.html" class="btn btn-block btn-light"
+                <a href="index.html" class="btn btn-light btn-block"
                   >Continuer mes achats</a
                 >
               </div>

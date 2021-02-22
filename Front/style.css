@@ -81,6 +81,9 @@ img.img-fluid {
 .btn-block + .btn-block {
   background-color: #9c6644;
 }
+a.btn.btn-block {
+  background-color: #9c6644;
+}
 
 /* PRODUCTS */
 #product-title {
@@ -98,12 +101,6 @@ img.img-fluid {
 }
 #add-btn {
   background-color: #9c6644;
-}
-/* Media Queries */
-@media screen and (max-width: 700px) {
-  #select-color {
-    width: 100%;
-  }
 }
 
 /* SHOPPING CART */
@@ -131,19 +128,42 @@ table tr {
   border: 1px solid #9c6644;
   padding: 0.35em;
 }
-
 table th,
 table td {
   padding: 0.625em;
   text-align: center;
 }
-
 table th {
   font-size: 0.85em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
+a.btn.btn-light.btn-block {
+  background-color: white;
+}
 /* Media Queries */
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  h2 {
+    font-size: 20px;
+  }
+  table th {
+    font-size: 0.75em;
+  }
+  table td {
+    font-size: 0.75em;
+  }
+  .form-control {
+    font-size: 0.75em;
+  }
+  .btn {
+    font-size: 0.75em;
+  }
+  #teddy-1,
+  #teddy-2 {
+    width: 110px;
+    height: 90px;
+  }
+}
 @media screen and (max-width: 700px) {
   table {
     border: 0;
@@ -162,9 +182,8 @@ table th {
     vertical-align: middle;
   }
   table td {
-    border-bottom: 1px solid #9c6644;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     font-size: 0.8em;
     text-align: right;
   }
@@ -173,6 +192,7 @@ table th {
   }
   .form-control {
     width: 50%;
+    margin-left: 25%;
   }
   table td::before {
     content: attr(data-label);
@@ -183,8 +203,9 @@ table th {
   table td:last-child {
     border-bottom: 0;
   }
-  a.btn.btn-block.btn-light {
+  a.btn.btn-light.btn-block {
     margin-bottom: 10px;
+    background-color: white;
   }
 }
 
@@ -261,7 +282,7 @@ form#paiement fieldset fieldset label {
 form#paiement fieldset fieldset label:hover {
   cursor: pointer;
 }
-a#validation-button.btn.btn-block {
+button#validation-button.btn.btn-block {
   background: #e6ccb2;
   border: none;
   -moz-border-radius: 20px;
