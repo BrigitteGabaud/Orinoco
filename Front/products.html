@@ -9,10 +9,6 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <script
-      src="https://kit.fontawesome.com/fc076ccdef.js"
-      crossorigin="anonymous"
-    ></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link
       href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -30,7 +26,7 @@
         <div class="container">
           <div class="row">
             <nav class="col navbar navbar-expand-md navbar-dark">
-              <img
+              <img id="logoImg"
                 src="../images/logo.png"
                 width="30"
                 height="30"
@@ -80,33 +76,14 @@
       </div>
 
       <!---Produit-->
-      <div class="container">
-        <h1 id="product-title">Ourson</h1>
-        <article class="row" id="product-details">
-          <img
-            id="product-image"
-            class="col-md-6"
-            src="../images/teddy_1.jpg"
-            alt="Votre produit"
-          />
-          <div class="col-md-6">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
-              dolor assumenda quidem aut molestiae!
-            </p>
-            <select id="select-color" class="form-control">
-              <option selected>Couleur de votre ourson</option>
-              <option value="1">Marron</option>
-              <option value="2">Blanc</option>
-              <option value="3">Gris</option>
-            </select>
-            <h2>00,00 €</h2>
-            <a href="shopping_cart.html" id="add-btn" class="btn btn-block"
-              >Ajouter au panier
-            </a>
-          </div>
-        </article>
+      <div class="container" id ="productContainer">
+        <article class="row" id="product-details"></article>
+        
+
       </div>
+
+      
+      
 
       <!--- Footer-->
       <footer>
@@ -127,5 +104,16 @@
         </div>
       </footer>
     </div>
+    <script src="products.js"></script>
+    <script
+      src="https://kit.fontawesome.com/fc076ccdef.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    
   </body>
 </html>

@@ -25,7 +25,7 @@
         <div class="container">
           <div class="row">
             <nav class="col navbar navbar-expand-md navbar-dark">
-              <img
+              <img id="logoImg"
                 src="../images/logo.png"
                 width="30"
                 height="30"
@@ -85,54 +85,18 @@
                   <th scope="col">Prix</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody></tbody>
+              <tfoot> 
                 <tr>
-                  <td>
-                    <img
-                      id="teddy-1"
-                      src="../images/teddy_1.jpg"
-                      width="120"
-                      height="100"
-                      alt="Votre produit"
-                    />
-                  </td>
-                  <td class="responsive-thumbnails">
-                    Lucien l'ourson tout doux
-                  </td>
-                  <td class="responsive-thumbnails">Marron</td>
-                  <td class="responsive-thumbnails">1</td>
-                  <td class="responsive-thumbnails">En stock</td>
-                  <td class="responsive-thumbnails">26,90€</td>
-                </tr>
-                <tr>
-                  <td>
-                    <img
-                      id="teddy-2"
-                      src="../images/teddy_2.jpg"
-                      width="120"
-                      height="100"
-                      alt="Votre produit"
-                    />
-                  </td>
-                  <td class="responsive-thumbnails">
-                    Marguerite l'oursonne joyeuse
-                  </td>
-                  <td class="responsive-thumbnails">Gris</td>
-                  <td class="responsive-thumbnails">1</td>
-                  <td class="responsive-thumbnails">En stock</td>
-                  <td class="responsive-thumbnails">23,50€</td>
-                </tr>
-                <tr>
-                  <!-- <td data-label="empty"></td> -->
+              
                   <td class="empty"></td>
                   <td class="empty"></td>
                   <td class="empty"></td>
                   <td class="empty"></td>
                   <td class="sm-center"><strong>Sous-total:</strong></td>
-                  <td class="sm-center">50,40€</td>
+                  <td class="sm-center"> €</td>
                 </tr>
                 <tr>
-                  <!-- <td></td> -->
                   <td class="empty"></td>
                   <td class="empty"></td>
                   <td class="empty"></td>
@@ -141,15 +105,14 @@
                   <td class="sm-center">Offerts</td>
                 </tr>
                 <tr>
-                  <!-- <td></td> -->
                   <td class="empty"></td>
                   <td class="empty"></td>
                   <td class="empty"></td>
                   <td class="empty"></td>
                   <td><strong>Total:</strong></td>
-                  <td class="sm-center"><strong>50,40€</strong></td>
+                  <td class="sm-center"><strong> €</strong></td>
                 </tr>
-              </tbody>
+              </tfoot> 
             </table>
           </div>
           <div class="col">
@@ -190,5 +153,11 @@
         </div>
       </footer>
     </div>
+    <script src="shopping_cart.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
