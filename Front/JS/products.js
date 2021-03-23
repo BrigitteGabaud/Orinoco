@@ -10,6 +10,7 @@ function addTitle(teddy) {
 function addImage(teddy) {
   const image = document.createElement("img");
   image.classList.add("col-md-6");
+  image.id = "product-image";
   image.setAttribute("src", teddy.image);
   image.setAttribute("alt", "Lucien l'ours tout doux");
   console.log(teddy.image);
@@ -65,7 +66,7 @@ const teddy1 = new Teddy(
     `Lucien l'ours tout doux`, 
     `Agréable au toucher, 45 cm`, 
     `26,90 €`, 
-    `../images/teddy_1.jpg`,
+    `../../images/teddy_1.jpg`,
     `marron`
 )
 
@@ -75,6 +76,7 @@ const parentContainer = article.parentNode;
 const addDiv = document.createElement("div");
 const btn = document.createElement("button");
 
+
 addTitle(teddy1);
 addImage(teddy1);
 addDescription(teddy1);
@@ -82,42 +84,57 @@ addPrice(teddy1);
 
 const addToCart = document.getElementById("add-btn");
 
+// --- Vérifie si une couleur a été selectionnée ---
 // --- Récupère et ajoute au panier l'article sélectionné ---
-addToCart.addEventListener("click", (event) => {
-  // Annule le comportement par défaut
+addToCart.onclick = (event) => {
   event.preventDefault();
+
   teddy1.selectedColor = document.querySelector("select").value;
   // Récupère et convertit les données au format JSON qui sont dans le local storage en objet Javascript
   let dataLocalStorage = JSON.parse(localStorage.getItem("panier"));
 
-  // Si il y a des données dans local storage, les envoie dans 
-  if(dataLocalStorage != null) {
+  // Cible l'élément après selectColor
+  let small = selectColor.nextElementSibling;
+
+  if(selectColor.value == "Couleur de votre ourson") {
+    // Ajoute le texte et la couleur dans small
+    small.innerHTML = "Veuillez sélectionner une couleur";
+    small.classList.add("text-danger");
+  } else if(dataLocalStorage != null) {
     // Ajoute le nouvel ourson selectionné dans le tableau ci-dessous
     dataLocalStorage.push(teddy1);
     // Convertit objet javascript en objet JSON et envoie dans local storage
     localStorage.setItem("panier", JSON.stringify(dataLocalStorage));
-  } else {
-    // Création d'un tableau vide
+   } else {
+     // Création d'un tableau vide
     dataLocalStorage = [];
     // Pousse les données de l'ourson selectionné dans le tableau
     dataLocalStorage.push(teddy1);
     localStorage.setItem("panier", JSON.stringify(dataLocalStorage));
+    // Dirige vers la page du panier
+    window.location.href = "../Html/shopping_cart.html";
   }
+}; 
 
-  // --- Vérifie si une couleur a été selectionnée ---
-  addToCart.onclick = (event) => {
-    event.preventDefault();
-    
-    // Cible l'élément après selectColor
-    let small = selectColor.nextElementSibling;
+// // --- Récupère et ajoute au panier l'article sélectionné ---
+// addToCart.addEventListener("click", (event) => {
+//   // Annule le comportement par défaut
+//   event.preventDefault();
+//   teddy1.selectedColor = document.querySelector("select").value;
+//   // Récupère et convertit les données au format JSON qui sont dans le local storage en objet Javascript
+//   let dataLocalStorage = JSON.parse(localStorage.getItem("panier"));
 
-    if(selectColor.value == "Couleur de votre ourson") {
-      // Ajoute le texte et la couleur dans small
-      small.innerHTML = "Veuillez sélectionner une couleur";
-      small.classList.add("text-danger");
-    } else {
-      // Dirige vers la page du panier
-      window.location.href = "shopping_cart.html";
-    }
-  }; 
-})
+//   // Si il y a des données dans local storage, les envoie dans 
+//   if(dataLocalStorage != null) {
+//     // Ajoute le nouvel ourson selectionné dans le tableau ci-dessous
+//     dataLocalStorage.push(teddy1);
+//     // Convertit objet javascript en objet JSON et envoie dans local storage
+//     localStorage.setItem("panier", JSON.stringify(dataLocalStorage));
+//   } else {
+//     // Création d'un tableau vide
+//     dataLocalStorage = [];
+//     // Pousse les données de l'ourson selectionné dans le tableau
+//     dataLocalStorage.push(teddy1);
+//     localStorage.setItem("panier", JSON.stringify(dataLocalStorage));
+//   }
+// })

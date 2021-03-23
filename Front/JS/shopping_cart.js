@@ -38,5 +38,4 @@ function generateTable(data) {
   })
   
 }
-generateTable(dataLocalStorage) 
-
+generateTable(dataLocalStorage) price.appendChild(deleteBtn)
