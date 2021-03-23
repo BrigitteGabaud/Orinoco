@@ -28,6 +28,7 @@ ul {
 }
 a {
   text-decoration: none;
+  color: #000000;
 }
 
 /* NAV */
@@ -38,8 +39,10 @@ nav a {
   color: black;
   text-decoration: none;
 }
-nav img {
+nav img#logoImg {
   margin-right: 15px;
+  width: 30px;
+  height: 30px;
 }
 
 /* JUMBOTRON */
@@ -72,10 +75,10 @@ h3.title {
 img.img-fluid {
   border-radius: 3px;
 }
-#teddy1 {
+li#teddy1 {
   padding-top: 10%;
 }
-#teddy5 {
+ul:nth-child(3) {
   padding-bottom: 150px;
 }
 .btn-block + .btn-block {
@@ -83,9 +86,14 @@ img.img-fluid {
 }
 a.btn.btn-block {
   background-color: #9c6644;
+  text-decoration: none;
 }
 
 /* PRODUCTS */
+
+h1{
+  margin-bottom: 5%;
+}
 #product-title {
   margin: 5% 0 5% 0;
 }
@@ -95,6 +103,9 @@ a.btn.btn-block {
 #product-details {
   margin-bottom: 20px;
   padding-bottom: 150px;
+}
+#details {
+  margin-bottom: 10px;
 }
 #product-image {
   margin-bottom: 10px;
@@ -151,6 +162,11 @@ a.btn.btn-light.btn-block {
   }
   table td {
     font-size: 0.75em;
+  }
+  img {
+    width: 100px;
+    height:80px;
+
   }
   .form-control {
     font-size: 0.75em;
@@ -313,8 +329,9 @@ form#paiement button:hover {
 /* FOOTER */
 #footer {
   background-color: #7f5539;
-  position: absolute;
+  position: relative;
   bottom: 0;
+  margin-top: 150px;
 }
 li.list-inline-item {
   padding-top: 10px;
