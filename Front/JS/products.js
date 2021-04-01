@@ -1,9 +1,9 @@
 // *** Ajoute le titre de l'ourson ***
 function addTitle(teddy) {
   const title = document.createElement("h1");
+  title.id = "productH1";
   title.innerText = teddy.title;
   parentContainer.insertBefore(title, article);
-  console.log(title);
 }  
 
 // *** Ajoute l'image de l'ourson ***
@@ -13,9 +13,7 @@ function addImage(teddy) {
   image.id = "product-image";
   image.setAttribute("src", teddy.image);
   image.setAttribute("alt", "Lucien l'ours tout doux");
-  console.log(teddy.image);
   article.appendChild(image);
-  console.log(image);
 }
 
 // *** Ajoute la description de l'ourson ***
@@ -33,8 +31,6 @@ function addDescription(teddy) {
     <small></small>`;
   article.appendChild(addDiv);
 }
-
-
 
 // *** Ajoute le prix de l'ourson ***
 function addPrice(teddy) {
@@ -86,55 +82,36 @@ const addToCart = document.getElementById("add-btn");
 
 // --- Vérifie si une couleur a été selectionnée ---
 // --- Récupère et ajoute au panier l'article sélectionné ---
-addToCart.onclick = (event) => {
+addToCart.addEventListener("click", (event) => {
   event.preventDefault();
-
+  // Récupère la valeur de select
   teddy1.selectedColor = document.querySelector("select").value;
-  // Récupère et convertit les données au format JSON qui sont dans le local storage en objet Javascript
-  let dataLocalStorage = JSON.parse(localStorage.getItem("panier"));
+  // Récupère et convertit les données au format JSON qui sont dans le local storage en objet Javascript (true = le panier existe), OU crée un objet (false = le panier est vide)
+  const getPanier = getPanier();
 
-  // Cible l'élément après selectColor
+// Cible l'élément après selectColor
   let small = selectColor.nextElementSibling;
 
-  if(selectColor.value == "Couleur de votre ourson") {
+  if (selectColor.value == "Couleur de votre ourson") {
     // Ajoute le texte et la couleur dans small
     small.innerHTML = "Veuillez sélectionner une couleur";
     small.classList.add("text-danger");
-  } else if(dataLocalStorage != null) {
-    // Ajoute le nouvel ourson selectionné dans le tableau ci-dessous
-    dataLocalStorage.push(teddy1);
-    // Convertit objet javascript en objet JSON et envoie dans local storage
-    localStorage.setItem("panier", JSON.stringify(dataLocalStorage));
-   } else {
-     // Création d'un tableau vide
-    dataLocalStorage = [];
-    // Pousse les données de l'ourson selectionné dans le tableau
-    dataLocalStorage.push(teddy1);
-    localStorage.setItem("panier", JSON.stringify(dataLocalStorage));
+  } else {
+    // Si un ourson avec son id et sa couleur se trouve dans le panier
+    if (dataLocalStorage[teddy1._id + teddy1.selectedColor]) {
+      // incrementer de un (évite d'écraser le premier ourson)
+      dataLocalStorage[teddy1._id + teddy1.selectedColor].quantity++;
+    } else {
+      //initialise la quantité d'oursons à 1
+      teddy1.quantity = 1;
+      // Ajoute les données de l'ourson selectionné dans l'objet'
+      dataLocalStorage[teddy1._id + teddy1.selectedColor] = teddy1;
+    }
+    // Convertit l'objet javascript en objet JSON et envoie dans local storage
+    const savePanier = savePanier();
     // Dirige vers la page du panier
     window.location.href = "../Html/shopping_cart.html";
   }
-}; 
+}); 
 
-// // --- Récupère et ajoute au panier l'article sélectionné ---
-// addToCart.addEventListener("click", (event) => {
-//   // Annule le comportement par défaut
-//   event.preventDefault();
-//   teddy1.selectedColor = document.querySelector("select").value;
-//   // Récupère et convertit les données au format JSON qui sont dans le local storage en objet Javascript
-//   let dataLocalStorage = JSON.parse(localStorage.getItem("panier"));
 
-//   // Si il y a des données dans local storage, les envoie dans 
-//   if(dataLocalStorage != null) {
-//     // Ajoute le nouvel ourson selectionné dans le tableau ci-dessous
-//     dataLocalStorage.push(teddy1);
-//     // Convertit objet javascript en objet JSON et envoie dans local storage
-//     localStorage.setItem("panier", JSON.stringify(dataLocalStorage));
-//   } else {
-//     // Création d'un tableau vide
-//     dataLocalStorage = [];
-//     // Pousse les données de l'ourson selectionné dans le tableau
-//     dataLocalStorage.push(teddy1);
-//     localStorage.setItem("panier", JSON.stringify(dataLocalStorage));
-//   }
-// })
