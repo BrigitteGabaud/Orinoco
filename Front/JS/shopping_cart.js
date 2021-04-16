@@ -1,35 +1,37 @@
+async function getTeddies() {
+  let url = `http://localhost:3000/api/teddies`;
+
+  await fetch(url)
+    .then((teddyBeforeParse) => teddyBeforeParse.json())
+
+    .then((teddyAfterParse) => {
+      
+      console.table(teddyAfterParse);
+    })
+    .catch((err) => console.log("Erreur " + err));
+}
+
 // Récupération du body et du tbody
 let body = document.getElementsByTagName("body");
 let tableBody = document.querySelector("tbody");
 
-// *** Ajoute le prix de l'ourson ***
-function addPrice(teddy) {
-  const price = document.createElement("h2");
-  price.innerText = teddy.price;
-  addDiv.appendChild(price);
-  btn.innerHTML = `Ajouter au panier`;
-  btn.classList.add("btn", "btn-block");
-  btn.id = "add-btn";
-  btn.value = "Generate a table";
-  addDiv.appendChild(btn);
-}
-
 // Génère le tableau contenant les articles sélectionnés
 function generateTable(data) {
   // Création des éléments du tableau
-  //data.forEach(function(product)
   for (const productIdentifier in data) {
+    // Génère un objet contenant les data
     const product = data[productIdentifier];
     console.log(product);
-    // Crée une ligne contentant les informations de l'ourson
+    // Crée une ligne contenant les informations de l'ourson
     let tr = document.createElement("tr");
     tr.dataset.productIdentifier = productIdentifier;
+    console.log(productIdentifier);
     tr.innerHTML = `
     <td>
         <a href="products.html">
           <img
               id="${product._id}"
-              src="${product.image}"
+              src="${product.imageUrl}"
               width="120"
               height="100"
               alt="Votre produit" 
@@ -37,7 +39,7 @@ function generateTable(data) {
         </a>
     </td>
     <td class="responsive-thumbnails">
-        ${product.title}
+        ${product.name}
     </td>
     <td class="responsive-thumbnails">${product.selectedColor}</td>
     <td class="responsive-thumbnails">
@@ -54,17 +56,14 @@ function generateTable(data) {
       </div>
     </td>
     <td class="responsive-thumbnails">En stock</td>
-    <td class="responsive-thumbnails">${product.price}</td>`;
-    console.log(product);
+    <td class="responsive-thumbnails productPrice">${(product.price / 100) * product.quantity } €</td>`;
     tableBody.appendChild(tr);
   }
 }
 generateTable(getPanier());
 
 const decrement = document.getElementsByClassName("minus");
-console.log(decrement);
 const increment = document.getElementsByClassName("plus");
-console.log(increment);
 const tab = document.getElementById("tab");
 
 // Boucle permettant de diminuer la quantité d'oursons
@@ -85,6 +84,7 @@ for (let element of decrement) {
     const productIdentifier = tr.dataset.productIdentifier;
     // Récupère l'html de productQuantityInput
     let count = productQuantityInput.innerHTML;
+    console.log(count);
     count--;
     // Récupère la fonction getPanier
     // = Récupère et convertit les données au format JSON qui sont dans le local storage en objet Javascript (true = le panier existe), OU crée un objet (false = le panier est vide)
@@ -103,21 +103,37 @@ for (let element of decrement) {
     }
     // Convertit l'objet javascript en objet JSON et envoie dans local storage
     savePanier(panier);
+    if(count > 1) {
+      // Récupère le prix dans le panier et le divise par 100
+      const unitPrice = panier[productIdentifier].price / 100;
+      // Multiplie le prix par la quantité de teddies
+      const totalPrice = unitPrice * count;
+      // Récupère dans le tr l'élément 0 du tableau
+      const totalPriceContainer = tr.getElementsByClassName("productPrice")[0];
+      // Insère le prix sur la page
+      totalPriceContainer.innerText = totalPrice + " €";
+    }
   });
 }
 
+// Boucle permettant d'augmenter la quantité d'oursons
 for (let element of increment) {
   element.addEventListener("click", (e) => {
     const button = e.target;
+    console.log(button);
     const counter = button.parentNode.parentNode;
+    console.log(counter);
     const productQuantityInput = counter.getElementsByClassName(
       "product-quantity-input"
     )[0];
+    console.log(productQuantityInput);
     // Remonte dans l'arbre pour sélectionner tr
     const tr = counter.parentNode.parentNode;
+    console.log(tr);
     const productIdentifier = tr.dataset.productIdentifier;
     let count = productQuantityInput.innerHTML;
     count++;
+
     productQuantityInput.innerHTML = count;
     // Récupère et ajoute les données dans le local storage
     const panier = getPanier();
@@ -125,6 +141,29 @@ for (let element of increment) {
     panier[productIdentifier].quantity++;
     // Convertit l'objet javascript en objet JSON et envoie dans local storage
     savePanier(panier);
+    // Récupère le prix dans le panier et le divise par 100
+    const unitPrice = panier[productIdentifier].price / 100;
+    // Multiplie le prix par la quantité de teddies
+    const totalPrice = unitPrice * count;
+    // Récupère dans le tr l'élément 0 du tableau
+    const totalPriceContainer = tr.getElementsByClassName("productPrice")[0];
+    // Insère le prix sur la page
+    totalPriceContainer.innerText = totalPrice + " €";
+    // // Récupère le td contenant le sous-total
+    // const tdSubTotal = document.getElementsByClassName("sm-center subTotal")[0];
+    // console.log(tdSubTotal);
+    // tdSubTotal.innerText = totalPrice + " €";
+    // // Récupère le td contenant le total
+    // const total = document.getElementsByClassName("sm-center total")[0];
+    // console.log(total);
+    // total.innerText = totalPrice + "€";
   });
 }
+
+// function generateSubTotal(data) {
+//   const subTotalLign = td.getElementsByClassName('subTotal');
+//   console.log(subTotal);
+// }
+// generateTable();
+
 
