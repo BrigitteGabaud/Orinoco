@@ -1,41 +1,93 @@
+const presentLocation = window.location.href;
+console.log(presentLocation);
+const splitUrl = presentLocation.split("id=");
+console.log(splitUrl);
+const teddyId = splitUrl[1];
+console.log(teddyId);
+
+async function getTeddy() {
+  let url = `http://localhost:3000/api/teddies/${teddyId}`;
+  // let url = `https://ab-p5-api.herokuapp.com/api/teddies/${teddyId}`;
+
+  await fetch(url)
+    .then((teddyBeforeParse) => teddyBeforeParse.json())
+
+    .then((teddyAfterParse) => {
+      addTitle(teddyAfterParse);
+      addImage(teddyAfterParse);
+      addDescription(teddyAfterParse);
+      addColor(teddyAfterParse);
+      addPrice(teddyAfterParse);
+      console.table(teddyAfterParse);
+    })
+    .catch((err) => console.log("Erreur " + err));
+}
+
+
 // *** Ajoute le titre de l'ourson ***
 function addTitle(teddy) {
   const title = document.createElement("h1");
   title.id = "productH1";
-  title.innerText = teddy.title;
+  title.innerText = `${teddy.name}`;
   parentContainer.insertBefore(title, article);
-}  
+ 
+}
 
 // *** Ajoute l'image de l'ourson ***
 function addImage(teddy) {
   const image = document.createElement("img");
   image.classList.add("col-md-6");
   image.id = "product-image";
-  image.setAttribute("src", teddy.image);
-  image.setAttribute("alt", "Lucien l'ours tout doux");
+  image.setAttribute("src", `${teddy.imageUrl}`);
+  image.setAttribute("alt", `${teddy.name}`);
   article.appendChild(image);
+  
 }
 
 // *** Ajoute la description de l'ourson ***
 function addDescription(teddy) {
   addDiv.classList.add("col-md-6");
   addDiv.innerHTML = `
-    <p id= "details">${teddy.description} </p>
-    <select id="selectColor"
-    class="form-control">
-        <option value = "Couleur de votre ourson">Couleur de votre ourson</option>
-        <option value="marron">Marron</option>
-        <option value="blanc">Blanc</option>
-        <option value="gris">Gris</option>
-    </select>
-    <small></small>`;
+    <p id= "details">${teddy.description} </p>`;
   article.appendChild(addDiv);
 }
+
+const addDiv = document.createElement("div");
+
+// *** Ajoute les couleurs de l'ourson ***
+function addColor(teddy) { 
+
+  const select = document.createElement("select");
+  select.id = "selectColor";
+  select.classList.add("form-control");
+  addDiv.appendChild(select);
+  /* créé le small en cas de non sélection de couleur*/
+  const small = document.createElement('small');
+  addDiv.appendChild(small);
+
+  /* créé la 1ere ligne des options de couleurs*/
+  const placeHolder = document.createElement("option");
+  placeHolder.innerText = "Couleur de votre ourson";
+  placeHolder.disabled = true;
+  placeHolder.selected = true;
+  select.appendChild(placeHolder);
+  
+  /* Itère dans le tableau teddy.colors */
+  teddy.colors.forEach(function (color) {
+   
+    const option = document.createElement('option');
+    option.innerText = color;
+    option.value = color;
+    select.appendChild(option);
+   
+  })
+}
+
 
 // *** Ajoute le prix de l'ourson ***
 function addPrice(teddy) {
   const price = document.createElement("h2");
-  price.innerText = teddy.price;
+  price.innerText = `${(teddy.price) / 100} €`;
   addDiv.appendChild(price);
   btn.innerHTML = `Ajouter au panier`;
   btn.classList.add("btn", "btn-block");
@@ -43,75 +95,56 @@ function addPrice(teddy) {
   btn.value = "Generate a table";
   addDiv.appendChild(btn);
 
+  /* Ecoute l'evt click et appelle la fonction addToCart */
+  btn.addEventListener("click", (event) => {
+    event.preventDefault();
+    addToCart(teddy);
+  });
 }
-
-
-class Teddy { 
-    constructor (id, title, description, price, image){
-        this._id = id;
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.image = image;
-        this.selectedColor = null;
-    }
-}
-
-const teddy1 = new Teddy(
-    1, 
-    `Lucien l'ours tout doux`, 
-    `Agréable au toucher, 45 cm`, 
-    `26,90 €`, 
-    `../../images/teddy_1.jpg`,
-    `marron`
-)
 
 const container = document.getElementById("productContainer");
 const article = document.getElementById("product-details");
 const parentContainer = article.parentNode;
-const addDiv = document.createElement("div");
 const btn = document.createElement("button");
+let selectedColor = document.getElementById("selectColor");
 
-
-addTitle(teddy1);
-addImage(teddy1);
-addDescription(teddy1);
-addPrice(teddy1);
-
-const addToCart = document.getElementById("add-btn");
-
-// --- Vérifie si une couleur a été selectionnée ---
-// --- Récupère et ajoute au panier l'article sélectionné ---
-addToCart.addEventListener("click", (event) => {
-  event.preventDefault();
+// Récupère et ajoute les données dans le local storage
+let dataLocalStorage = JSON.parse(localStorage.getItem("panier"));
+console.log(dataLocalStorage);
+// *** Ajoute le prix de l'ourson ***
+function addToCart(teddy){
   // Récupère la valeur de select
-  teddy1.selectedColor = document.querySelector("select").value;
-  // Récupère et convertit les données au format JSON qui sont dans le local storage en objet Javascript (true = le panier existe), OU crée un objet (false = le panier est vide)
-  const getPanier = getPanier();
+  teddy.selectedColor = document.querySelector("select").value;
 
-// Cible l'élément après selectColor
-  let small = selectColor.nextElementSibling;
+  // Cible l'élément après selectColor
+  let small = document.querySelector("small");
 
-  if (selectColor.value == "Couleur de votre ourson") {
+  // Vérifie si une couleur a été selectionnée/ajoute au local storage/envoie vers page panier
+  if (teddy.selectedColor == "Couleur de votre ourson") {
     // Ajoute le texte et la couleur dans small
     small.innerHTML = "Veuillez sélectionner une couleur";
     small.classList.add("text-danger");
   } else {
+    
+    // Récupère la fonction getPanier dans library.js 
+    const panier = getPanier();
     // Si un ourson avec son id et sa couleur se trouve dans le panier
-    if (dataLocalStorage[teddy1._id + teddy1.selectedColor]) {
+    if (panier[`${teddy._id}_${teddy.selectedColor}`]) {
       // incrementer de un (évite d'écraser le premier ourson)
-      dataLocalStorage[teddy1._id + teddy1.selectedColor].quantity++;
+      panier[`${teddy._id}_${teddy.selectedColor}`].quantity++;
     } else {
       //initialise la quantité d'oursons à 1
-      teddy1.quantity = 1;
+      teddy.quantity = 1;
       // Ajoute les données de l'ourson selectionné dans l'objet'
-      dataLocalStorage[teddy1._id + teddy1.selectedColor] = teddy1;
+      panier[`${teddy._id}_${teddy.selectedColor}`] = teddy;
     }
     // Convertit l'objet javascript en objet JSON et envoie dans local storage
-    const savePanier = savePanier();
+    //const savePanier = savePanier();
+    savePanier(panier);
     // Dirige vers la page du panier
     window.location.href = "../Html/shopping_cart.html";
   }
-}); 
+};
 
+getTeddy();
 
