@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!---<meta http-equiv="refresh" content="1">-->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -61,13 +62,14 @@
         </ol>
       </nav>
       <!--- Tableau Panier-->
-      <div class="container">
+      <div class="container" id="shop-tab-container">
         <h2 id="shopping_cart_title" class="text-center">
           Récapitulatif de mon panier
         </h2>
+        <p id="empty-shopping-cart">Votre panier est actuellement vide.</p>
         <div id="shop-tab">
           <div id="tab" class="col-12">
-            <table>
+            <table id="table">
               <thead>
                 <tr>
                   <th scope="col"></th>
@@ -79,7 +81,7 @@
                 </tr>
               </thead>
               <tbody></tbody>
-              <tfoot> 
+              <tfoot id="tFoot"> 
                 <tr>
               
                   <td class="empty"></td>
@@ -115,7 +117,7 @@
                   >Continuer mes achats</a
                 >
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6" id="validationButton">
                 <a
                   href="paiement.html"
                   id="validation-btn"
