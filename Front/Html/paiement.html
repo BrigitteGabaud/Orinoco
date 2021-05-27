@@ -73,27 +73,32 @@
           <fieldset>
             <legend>Votre identité</legend>
             <ol>
+              <!-- Nom -->
               <li>
-                <label for="nom">Nom</label>
+                <label for="lastName">Nom</label>
                 <input
-                  id="nom"
-                  name="nom"
+                  id="lastName"
+                  name="lastName"
                   type="text"
                   placeholder="Nom"
                   required
                   autofocus
-                />
+                /><br>
+                <small></small>
               </li>
+              <!-- Prénom -->
               <li>
-                <label for="prénom">Prénom</label>
+                <label for="firstName">Prénom</label>
                 <input
-                  id="prénom"
-                  name="prénom"
+                  id="firstName"
+                  name="firstName"
                   type="text"
                   placeholder="Prénom"
                   required
-                />
+                /><br>
+                <small></small>
               </li>
+              <!-- Email -->
               <li>
                 <label for="email">Email</label>
                 <input
@@ -102,85 +107,54 @@
                   type="email"
                   placeholder="exemple@domaine.com"
                   required
-                />
+                /><br>
+                <small></small>
               </li>
             </ol>
           </fieldset>
+          <!--** Adresse **-->
+          Adresse
           <fieldset>
             <legend>Adresse de livraison</legend>
             <ol>
+              <!-- Adresse -->
               <li>
-                <label for="adresse">Adresse</label>
+                <label for="address">Adresse</label>
                 <textarea
-                  id="adresse"
-                  name="adresse"
+                  id="address"
+                  name="address"
                   rows="5"
                   required
                 ></textarea>
               </li>
+              <!-- Code Postal-->
               <li>
-                <label for="codepostal">Code postal</label>
-                <input id="codepostal" name="codepostal" type="text" required />
+                <label for="postalCode">Code postal</label>
+                <input 
+                  id="postalCode" 
+                  name="postalCode"
+                  type="text" 
+                  required /><br>
+                <small></small>
               </li>
+              <!-- Ville -->
               <li>
-                <label for="pays">Pays</label>
-                <input id="pays" name="pays" type="text" required />
-              </li>
-            </ol>
-          </fieldset>
-          <fieldset>
-            <legend>Informations CB</legend>
-            <ol>
-              <li>
-                <fieldset>
-                  <legend>Type de carte bancaire</legend>
-                  <ol>
-                    <li>
-                      <input id="visa" name="type_de_carte" type="radio" />
-                      <label for="visa">VISA</label>
-                      <i class="fab fa-cc-visa"></i>
-                    </li>
-                    <li>
-                      <input
-                        id="mastercard"
-                        name="type_de_carte"
-                        type="radio"
-                      />
-                      <label for="mastercard">Mastercard</label>
-                      <i class="fab fa-cc-mastercard"></i>
-                    </li>
-                  </ol>
-                </fieldset>
-              </li>
-              <li>
-                <label for="nom_porteur">Nom du porteur</label>
-                <input
-                  id="nom_porteur"
-                  name="nom_porteur"
-                  type="text"
-                  placeholder="Identique à la carte"
-                  required
-                />
-              </li>
-              <li>
-                <label for="numero_de_carte">N° de carte</label>
-                <input
-                  id="numero_de_carte"
-                  name="numero_de_carte"
-                  type="number"
-                  required
-                />
-              </li>
-              <li>
-                <label for="securite">Code sécurité</label>
-                <input id="securite" name="securite" type="number" required />
+                <label for="city">Ville</label>
+                <input 
+                  id="city" 
+                  name="city" 
+                  type="text" 
+                  required /><br>
+                <small></small>
               </li>
             </ol>
           </fieldset>
+          <!-- Bouton de validation -->
           <fieldset>
-            <button type="submit" id="validation-button" class="btn btn-block">
-              Validation
-            </button>
+            <button 
+            type="submit" 
+            id="validation-button" 
+            class="btn btn-block">Validation</button>
           </fieldset>
         </form>
       </div>
@@ -203,13 +177,14 @@
         </div>
       </footer>
     </div>
-    <script
-      src="https://kit.fontawesome.com/fc076ccdef.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script
+    src="https://kit.fontawesome.com/fc076ccdef.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   <script src ="../JS/library.js"></script>
+  <script src ="../JS/paiement.js"></script>
   </body>
 </html>
