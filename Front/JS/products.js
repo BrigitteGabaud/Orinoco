@@ -1,36 +1,36 @@
+// Renvoi un objet contenant les inforamtions sur l'url de la page
 const presentLocation = window.location.href;
-console.log(presentLocation);
+// Divise la chaine de l'url et renvoi un tableau contenant l'id de l'ourson
 const splitUrl = presentLocation.split("id=");
-console.log(splitUrl);
+// Cible l'id de l'ourson dans le tableau
 const teddyId = splitUrl[1];
-console.log(teddyId);
 
+// Récupère les données d'un ourson à partir de son id
 async function getTeddy() {
   let url = `http://localhost:3000/api/teddies/${teddyId}`;
-  // let url = `https://ab-p5-api.herokuapp.com/api/teddies/${teddyId}`;
-
+ 
   await fetch(url)
+    // Convertit l'objet JSON en objet javascript
     .then((teddyBeforeParse) => teddyBeforeParse.json())
-
+    // Ajoute les données de l'ourson
     .then((teddyAfterParse) => {
       addTitle(teddyAfterParse);
       addImage(teddyAfterParse);
       addDescription(teddyAfterParse);
       addColor(teddyAfterParse);
       addPrice(teddyAfterParse);
-      console.table(teddyAfterParse);
     })
+    // Affiche un message si erreur
     .catch((err) => console.log("Erreur " + err));
 }
-
 
 // *** Ajoute le titre de l'ourson ***
 function addTitle(teddy) {
   const title = document.createElement("h1");
   title.id = "productH1";
   title.innerText = `${teddy.name}`;
+  // Ajoute le titre avant l'article
   parentContainer.insertBefore(title, article);
- 
 }
 
 // *** Ajoute l'image de l'ourson ***
@@ -41,7 +41,6 @@ function addImage(teddy) {
   image.setAttribute("src", `${teddy.imageUrl}`);
   image.setAttribute("alt", `${teddy.name}`);
   article.appendChild(image);
-  
 }
 
 // *** Ajoute la description de l'ourson ***
@@ -56,7 +55,6 @@ const addDiv = document.createElement("div");
 
 // *** Ajoute les couleurs de l'ourson ***
 function addColor(teddy) { 
-
   const select = document.createElement("select");
   select.id = "selectColor";
   select.classList.add("form-control");
@@ -74,15 +72,12 @@ function addColor(teddy) {
   
   /* Itère dans le tableau teddy.colors */
   teddy.colors.forEach(function (color) {
-   
     const option = document.createElement('option');
     option.innerText = color;
     option.value = color;
     select.appendChild(option);
-   
   })
 }
-
 
 // *** Ajoute le prix de l'ourson ***
 function addPrice(teddy) {
@@ -110,8 +105,8 @@ let selectedColor = document.getElementById("selectColor");
 
 // Récupère et ajoute les données dans le local storage
 let dataLocalStorage = JSON.parse(localStorage.getItem("panier"));
-console.log(dataLocalStorage);
-// *** Ajoute le prix de l'ourson ***
+
+// *** Ajoute et sauvegarde les données de l'ourson dans le local storage ***
 function addToCart(teddy){
   // Récupère la valeur de select
   teddy.selectedColor = document.querySelector("select").value;
@@ -139,7 +134,6 @@ function addToCart(teddy){
       panier[`${teddy._id}_${teddy.selectedColor}`] = teddy;
     }
     // Convertit l'objet javascript en objet JSON et envoie dans local storage
-    //const savePanier = savePanier();
     savePanier(panier);
     // Dirige vers la page du panier
     window.location.href = "../Html/shopping_cart.html";
