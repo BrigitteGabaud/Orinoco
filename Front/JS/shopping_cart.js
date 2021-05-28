@@ -2,21 +2,7 @@
 let body = document.getElementsByTagName("body");
 let tableBody = document.querySelector("tbody");
 
-function deleteTfoot() {
-  // Récupère le tableau
-  const table = document.getElementById("table");
-  // Récupère le tfoot
-  const tFoot = document.getElementById("tFoot");
-  // Récupère la div du bouton de validation
-  const validationButtonDiv = document.getElementById("validationButton");
-  // Récupère le bouton de validation
-  const validationBtn = document.getElementById("validation-btn");
-  // supprime le tfoot
-  table.removeChild(tFoot);
-  //Supprime le bouton validation
-  validationButtonDiv.removeChild(validationBtn);
-}
-
+// **** Vérifie si le panier est vide ou non **** //
 function verifyBasket() {
   let panier = getPanier();
   // Crée  un tableau vide 
@@ -25,10 +11,10 @@ function verifyBasket() {
   for(let element in panier) {
     // Récupère le prix de chaque ourson dans le panier
     const unitPrice = panier[element].price / 100;
-    // Pousse le prix untitaire dans le panier
+    // Pousse le prix unitaire dans le panier
     basketElements.push(unitPrice);
   }
-  if (basketElements!= 0) {
+  if (basketElements.length != 0) {
     // Récupère le container
     const shoppingCartContainer = document.getElementById("shop-tab-container");
     // Récupère le paragraphe
@@ -36,12 +22,68 @@ function verifyBasket() {
     // Supprime le paragraphe
     shoppingCartContainer.removeChild(emptyShoppingCart);
   } else {
+    deleteThead();
     deleteTfoot();
   }
 }
 verifyBasket(getPanier());
 
-// Génère le tableau contenant les articles sélectionnés
+// **** Supprime le thead si le panier est vide **** //
+function deleteThead() {
+  // Récupère le tableau
+  const table = document.getElementById("table");
+  // Récupère le thead
+  const tHead = document.getElementById("thead");
+  // Supprime le thead
+  table.removeChild(tHead);
+}
+
+// **** Supprime le tfoot si le panier est vide **** //
+function deleteTfoot() {
+  const panier = getPanier();
+  let basketElements = [];
+  for(let element in panier) {
+    // Récupère le prix de chaque ourson dans le panier
+    const teddyID = panier[element]._id;
+    // Pousse le prix unitaire dans le panier
+    basketElements.push(teddyID);
+  }
+  
+  if(basketElements.length == 0) {
+    // Récupère le tableau
+    const table = document.getElementById("table");
+    // Récupère le tfoot
+    const tFoot = document.getElementById("tFoot");
+    // Récupère la div du bouton de validation
+    const validationButtonDiv = document.getElementById("validationButton");
+    // supprime le tfoot
+    table.removeChild(tFoot);
+    // Récupère le bouton de validation
+    const validationBtn = document.getElementById("validation-btn");
+    //Supprime le bouton validation
+    validationButtonDiv.removeChild(validationBtn);
+    // Récupère la div du bouton de poursuite des achats
+    const continueButtonDiv = document.getElementById("continueButton");
+    // Centre le bouton "poursuivre mes achats"
+    continueButtonDiv.classList.add("col-md-12")
+  }
+}
+
+// **** Ajoute un message si le panier est vide **** //
+const addEmptyCartMessage = function() {
+   // Récupère le container
+   const shoppingCartContainer = document.getElementById("shop-tab-container");
+   // Crée le paragraphe
+   const emptyShoppingCartElement = document.createElement('p');
+   // Ajoute un id au paragraphe
+   emptyShoppingCartElement.id = "empty-shopping-cart";
+   // Ajoute le texte du paragraphe
+   emptyShoppingCartElement.innerText = "Votre panier est actuellement vide.";
+   // Insert le paragraphe au bon endroit dans la page
+   shoppingCartContainer.insertBefore(emptyShoppingCartElement , shoppingCartContainer.childNodes[2]);
+}
+
+// **** Génère le tableau contenant les articles sélectionnés dans le panier **** //
 function generateTable(data) {
   // Création des éléments du tableau
   for (const productIdentifier in data) {
@@ -92,7 +134,7 @@ const tab = document.getElementById("tab");
 // Récupère et convertit les données au format JSON qui sont dans le local storage en objet Javascript (true = le panier existe), OU crée un objet (false = le panier est vide)
 const panier = getPanier();
 
-// Boucle permettant de diminuer la quantité d'oursons
+// ---- Boucle permettant de diminuer la quantité d'oursons ---- //
 for (let element of decrement) {
   // Ecoute l'évènement au clic
   element.addEventListener("click", (e) => {
@@ -118,31 +160,45 @@ for (let element of decrement) {
     // Récupère le html de Product Qunatity Input
     productQuantityInput.innerHTML = count;
 
-    if (count < 1) {
-    // Récupère tbody
-    const tBody = document.querySelector("tbody");
-    // Supprime l'enfant de tbody = tr
-    tBody.removeChild(tr);
-    // Supprime du panier lélement ciblé
-    delete panier[productIdentifier];
-     deleteTfoot()
+    if (count < 1 && Object.keys(panier).length > 1) {
+      // Récupère tbody
+      const tBody = document.querySelector("tbody");
+      // Supprime l'enfant de tbody = tr
+      tBody.removeChild(tr);
+      // Supprime du panier l'élement ciblé
+      delete panier[productIdentifier];
+      document.location.reload();
+    } else if (count < 1 && Object.keys(panier).length <= 1) {
+      // Récupère tbody
+      const tBody = document.querySelector("tbody");
+      // Supprime l'enfant de tbody = tr
+      tBody.removeChild(tr);
+      // Supprime du panier l'élement ciblé
+      delete panier[productIdentifier];
+      document.location.reload();
+      deleteThead();
+      deleteTfoot();
+      addEmptyCartMessage();
     }
     // Convertit l'objet javascript en objet JSON et envoie dans local storage
     savePanier(panier);
-    
-    // Récupère le prix dans le panier et le divise par 100
-    const unitPrice = panier[productIdentifier].price / 100;
-    // Multiplie le prix par la quantité de teddies
-    const totalPrice = unitPrice * count;
-    // Récupère dans le tr l'élément 0 du tableau
-    const totalPriceContainer = tr.getElementsByClassName("productPrice")[0];
-    // Insère le prix sur la page
-    totalPriceContainer.innerText = totalPrice + " €";
-    generateSubTotal(getPanier());
+  
+    // Insère le prix total de l'article
+    if(panier[productIdentifier]) {
+       // Récupère le prix dans le panier et le divise par 100
+      const unitPrice = panier[productIdentifier].price / 100;
+      // Multiplie le prix par la quantité de teddies
+      const totalPrice = unitPrice * count;
+      // Récupère dans le tr l'élément 0 du tableau
+      const totalPriceContainer = tr.getElementsByClassName("productPrice")[0];
+      // Insère le prix sur la page
+      totalPriceContainer.innerText = totalPrice + " €";
+      generateSubTotal(panier);
+    }
   });
 }
 
-// Boucle permettant d'augmenter la quantité d'oursons
+// ---- Boucle permettant d'augmenter la quantité d'oursons ---- //
 for (let element of increment) {
   element.addEventListener("click", (e) => {
     // Cible bouton +
@@ -175,10 +231,12 @@ for (let element of increment) {
     const totalPriceContainer = tr.getElementsByClassName("productPrice")[0];
     // Insère le prix sur la page
     totalPriceContainer.innerText = totalPrice + " €";
-    generateSubTotal(getPanier());
+    generateSubTotal(panier);
   });
+  
 }
 
+// **** Génère le sous-total et total en fonction du panier **** //
 function generateSubTotal() {
   let panier = getPanier();
   // Crée un tableau vide pour accueillir les sous-totaux
