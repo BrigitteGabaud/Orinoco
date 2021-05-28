@@ -174,6 +174,9 @@ select#selectColor{
   padding-bottom: 150px;
   margin-bottom: 150px;
 }
+#empty-shopping-cart{
+  font-size: 0.7rem;
+}
 #tab {
   margin-bottom: 50px;
 }
@@ -237,6 +240,9 @@ a.btn.btn-light.btn-block {
   /* h2 {
     font-size: 20px;
   } */
+  #empty-shopping-card{
+  font-size: 1rem;
+  }
   table th {
     font-size: 0.75em;
   }
