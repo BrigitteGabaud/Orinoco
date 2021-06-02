@@ -9,7 +9,7 @@ form.lastName.addEventListener('input', function() {
 const validLastName = function(inputLastName){
   
   // Création Regexp pour validation nom
-  let lastNameRegexp = new RegExp(/^[a-zA-Z]{3,20}$/, "g");
+  let lastNameRegexp = new RegExp(/^[a-zA-Z]{3,20}\s*[a-zA-Z]{2,20}$/, "g");
   // Test de la regexp
   let testLastName = lastNameRegexp.test(inputLastName.value);
   let br = inputLastName.nextElementSibling;
@@ -38,7 +38,7 @@ form.firstName.addEventListener('input', function() {
 const validFirstName = function (inputFirstName) {
 
   // Création Regexp pour validation prenom
-  let firstNameRegexp = new RegExp(/^[a-zA-Z]{3,20}$/, "g");
+  let firstNameRegexp = new RegExp(/^[a-zA-Z]{3,20}\s*[a-zA-Z]{2,20}$/, "g");
   // Test de la regexp
   let testFirstName = firstNameRegexp.test(inputFirstName.value);
   let br = inputFirstName.nextElementSibling;
@@ -236,12 +236,12 @@ getSubmitButton.addEventListener("click", function (e) {
 // Prend la key dans le local storage et la met dans une variable
 const dataLocalStorage =localStorage.getItem("contact");
 
-// Convertit la chaine de caractères en objet javascript
-const dataLocalStorageObject = JSON.parse(dataLocalStorage);
+// Convertit la chaine de caractères en objet javascript OU crée un objet vide
+const dataLocalStorageObject = JSON.parse(dataLocalStorage) || {};
 
-// Met les values du local storage dans les champs du form
+// Met les values du local storage dans les champs du form Ou crée une chaine de caractères vide
 function setLocalStorageDataInInputs(input) {
-  document.querySelector(`#${input}`).value = dataLocalStorageObject[input];
+  document.querySelector(`#${input}`).value = dataLocalStorageObject[input] || "";
 };
 
 setLocalStorageDataInInputs("firstName");
