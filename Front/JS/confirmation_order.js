@@ -4,14 +4,20 @@ function getContact() {
 }
 getContact();
 
-// *** Récupère la key orderId dans le local Storage et la convertit en objet js *** //
+// *** Récupère la key orderId dans le local Storage et la converti en objet js *** //
 function getOrderId() {
-    return JSON.parse(localStorage.getItem("orderId"));
+  // S'il n'y a pas de orderId dans le local storage: crée une nouvelle erreur
+  if (localStorage.getItem("orderId") == undefined) {
+    throw new Error("Une erreur est survenue");
+  } return JSON.parse(localStorage.getItem("orderId"));
 }
-getOrderId();
-
-let contact = getContact();
-let orderId = getOrderId();
+try {
+  let contact = getContact();
+  let orderId = getOrderId();
+} catch (error) {
+  let confirmMessage = document.getElementById("confirm-message");
+  confirmMessage.innerHTML = error;
+}
 
 // Crée un tableau vide pour accueillir les sous-totaux
 let eachSubTotal = [];
